@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ais.ImageSplitter.Api", "Ais.ImageSplitter.Api\Ais.ImageSplitter.Api.csproj", "{EB419807-6958-4689-A55A-13EF03D7C5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ais.ImageSplitter.Library", "Ais.ImageSplitter.Library\Ais.ImageSplitter.Library.csproj", "{86EB7D93-2356-49F2-9C8B-A3C673162970}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB419807-6958-4689-A55A-13EF03D7C5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB419807-6958-4689-A55A-13EF03D7C5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB419807-6958-4689-A55A-13EF03D7C5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB419807-6958-4689-A55A-13EF03D7C5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86EB7D93-2356-49F2-9C8B-A3C673162970}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86EB7D93-2356-49F2-9C8B-A3C673162970}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86EB7D93-2356-49F2-9C8B-A3C673162970}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86EB7D93-2356-49F2-9C8B-A3C673162970}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
