@@ -54,7 +54,6 @@ namespace Ais.ImageSplitter.Api
 
             app.UseRouting();
 
-            
             app.UseAuthentication();
             app.UseAuthorization();
 
