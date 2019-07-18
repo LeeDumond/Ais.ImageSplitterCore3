@@ -33,6 +33,8 @@ namespace Ais.ImageSplitter.Api
             services.Configure<SecurityOptions>(Configuration.GetSection("SecuritySettings"));
             services.AddAuthentication("BasicAuthentication")
                 .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +54,9 @@ namespace Ais.ImageSplitter.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
