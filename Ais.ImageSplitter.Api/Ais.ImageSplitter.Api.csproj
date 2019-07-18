@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ais.ImageSplitter.Library\Ais.ImageSplitter.Library.csproj" />
+    <ProjectReference Include="..\Ais.ImageSplitter.Wpf\Ais.ImageSplitter.Wpf.csproj" />
   </ItemGroup>
 
 </Project>

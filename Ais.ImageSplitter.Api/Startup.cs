@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ais.ImageSplitter.Api.Security;
-using Ais.ImageSplitter.Library;
+using Ais.ImageSplitter.Wpf;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
