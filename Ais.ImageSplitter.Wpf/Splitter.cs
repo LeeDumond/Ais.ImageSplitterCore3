@@ -24,12 +24,9 @@ namespace Ais.ImageSplitter.Wpf
 
                     foreach (int pageNumber in pageNumbers)
                     {
-                        try
+                        if (pageNumber > 0 && pageNumber <= decoder.Frames.Count)
                         {
-                            encoder.Frames.Add(decoder.Frames[pageNumber]);
-                        }
-                        catch (ArgumentOutOfRangeException)
-                        {
+                            encoder.Frames.Add(decoder.Frames[pageNumber-1]);
                         }
                     }
 
