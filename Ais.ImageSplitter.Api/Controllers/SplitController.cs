@@ -25,8 +25,7 @@ namespace Ais.ImageSplitter.Api.Controllers
 
             if (result.ErrorStatus != null)
             {
-                var statusCode = (int)HttpStatusCode.InternalServerError;
-                Response.StatusCode = statusCode;
+                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
 
             return result;
