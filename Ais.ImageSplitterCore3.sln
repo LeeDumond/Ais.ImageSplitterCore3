@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ais.ImageSplitter.Api", "Ais.ImageSplitter.Api\Ais.ImageSplitter.Api.csproj", "{EB419807-6958-4689-A55A-13EF03D7C5A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ais.ImageSplitter.Wpf", "Ais.ImageSplitter.Wpf\Ais.ImageSplitter.Wpf.csproj", "{BF1955CB-6861-4F85-B593-6ADB3EA9024A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ais.ImageSplitter.Wpf", "Ais.ImageSplitter.Wpf\Ais.ImageSplitter.Wpf.csproj", "{BF1955CB-6861-4F85-B593-6ADB3EA9024A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

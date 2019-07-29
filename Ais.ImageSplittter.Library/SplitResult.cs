@@ -1,4 +1,8 @@
-﻿namespace Ais.ImageSplitter.Library
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Ais.ImageSplittter.Library
 {
     public class SplitResult
     {
