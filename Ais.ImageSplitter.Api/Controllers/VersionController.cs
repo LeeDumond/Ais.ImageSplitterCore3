@@ -15,7 +15,7 @@ namespace Ais.ImageSplitter.Api.Controllers
         [HttpGet]
         public string Get()
         {
-            string version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+            string version = typeof(Program).Assembly?.GetCustomAttribute<AssemblyInformationalVersionAttribute>()
                 .InformationalVersion;
 
             return $"Ais.ImageSplitter.Api v{version}";
