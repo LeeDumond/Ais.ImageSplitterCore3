@@ -17,7 +17,27 @@ namespace Ais.ImageSplitter.Tests
     public class SplitControllerTests
     {
         [TestMethod]
-        public async Task Post_WithError_StatusCode500()
+        public async Task Post_ReturnsResultWithStatusCode200()
+        {
+            var mockSplitter = new Mock<ISplitter>();
+            mockSplitter.Setup(s => s.SplitAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int[]>()))
+                .ReturnsAsync(() => new SplitResult());
+
+            var controller = new SplitController(mockSplitter.Object)
+            {
+                ControllerContext = new ControllerContext { HttpContext = new DefaultHttpContext() }
+            };
+
+            ActionResult<SplitResult> result = await controller.Post(new SplitRequest { });
+
+            Assert.AreEqual(200, controller.Response.StatusCode);
+            Assert.IsNull(result.Value.ErrorStatus);
+            Assert.IsNull(result.Value.StackTrace);
+        }
+
+
+        [TestMethod]
+        public async Task Post_WithError_ReturnsResultWithStatusCode500()
         {
             var mockSplitter = new Mock<ISplitter>();
             mockSplitter.Setup(s => s.SplitAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int[]>()))
@@ -28,7 +48,7 @@ namespace Ais.ImageSplitter.Tests
                 ControllerContext = new ControllerContext {HttpContext = new DefaultHttpContext()}
             };
 
-            ActionResult<SplitResult> result = await controller.Post(new SplitRequest{});
+            ActionResult<SplitResult> result = await controller.Post(new SplitRequest{InputFilePath = "some input path"});
 
             Assert.AreEqual(500, controller.Response.StatusCode);
             Assert.AreEqual("some error message", result.Value.ErrorStatus);
