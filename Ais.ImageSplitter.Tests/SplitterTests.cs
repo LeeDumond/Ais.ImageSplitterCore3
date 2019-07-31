@@ -58,5 +58,37 @@ namespace Ais.ImageSplitter.Tests
 
             Assert.AreEqual("Value cannot be null. (Parameter 'pageNumbers')", result.ErrorStatus);
         }
+
+        [TestMethod]
+        public async Task SplitAsync_EmptyPageNumbersThrows()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
+
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", new int[]{});
+
+            Assert.AreEqual("No pages were saved to the output. This may be because no pages were indicated, or the indicated pages were not found in the source file.", result.ErrorStatus);
+        }
+
+        [TestMethod]
+        public async Task SplitAsync_NoValidPageNumbersThrows()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
+
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", new int[] { 0, -12, 61, 65});
+
+            Assert.AreEqual("No pages were saved to the output. This may be because no pages were indicated, or the indicated pages were not found in the source file.", result.ErrorStatus);
+        }
+
+        [TestMethod]
+        public async Task SplitAsync_InvalidPageNumbersSkipped()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
+
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", new int[] { 0, -12, 1, 4, 6, 9, 61, 65 });
+
+
+
+            Assert.AreEqual(4, result.ErrorStatus);
+        }
     }
 }

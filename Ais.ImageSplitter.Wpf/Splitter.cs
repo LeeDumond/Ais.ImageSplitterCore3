@@ -69,6 +69,10 @@ namespace Ais.ImageSplitter.Wpf
                             encoder.Save(outputStream);
                         }
                     }
+                    else
+                    {
+                        throw new InvalidOperationException("No pages were saved to the output. This may be because no pages were indicated, or the indicated pages were not found in the supplied input file.");
+                    }
                 }
             }
             catch (Exception e)
