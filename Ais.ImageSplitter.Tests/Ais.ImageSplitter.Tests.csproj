@@ -11,11 +11,18 @@
     <PackageReference Include="Moq" Version="4.12.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
     <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="System.IO.Abstractions.TestingHelpers" Version="6.0.15" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ais.ImageSplitter.Api\Ais.ImageSplitter.Api.csproj" />
     <ProjectReference Include="..\Ais.ImageSplitter.Wpf\Ais.ImageSplitter.Wpf.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="UM0005179.tif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

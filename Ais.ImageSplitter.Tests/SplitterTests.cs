@@ -7,27 +7,56 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Ais.ImageSplitter.Tests
 {
+
     [TestClass]
     public class SplitterTests
     {
+        private readonly FileSystemFixture _fileSystemFixture;
+
+        public SplitterTests()
+        {
+            _fileSystemFixture = new FileSystemFixture();
+        }
+
+
         [TestMethod]
         public async Task SplitAsync_InputFilePathIsSame()
         {
-            var splitter = new Splitter();
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
 
-            var result = await splitter.SplitAsync("some input path", null, null);
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-input.tif", new[] { 1, 2, 3 });
 
-            Assert.AreEqual("some input path", result.InputFilePath);
+            Assert.AreEqual(@"C:\images\sample-input.tif", result.InputFilePath);
         }
 
         [TestMethod]
         public async Task SplitAsync_NullInputPathThrows()
         {
-            var splitter = new Splitter();
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
 
-            var result = await splitter.SplitAsync(null, null, null);
+            SplitResult result = await splitter.SplitAsync(null, @"C:\images\sample-output.tif", new[]{1,2,3});
 
-            Assert.AreEqual("Path cannot be null. (Parameter 'path')", result.ErrorStatus);
+            Assert.AreEqual("Value cannot be null. (Parameter 'inputFilePath')", result.ErrorStatus);
+        }
+
+        [TestMethod]
+        public async Task SplitAsync_NullOutputPathThrows()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
+
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", null, new[] { 1, 2, 3 });
+
+            Assert.AreEqual("Value cannot be null. (Parameter 'outputFilePath')", result.ErrorStatus);
+        }
+
+        [TestMethod]
+        public async Task SplitAsync_NullPageNumbersThrows()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
+
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", null);
+
+            Assert.AreEqual("Value cannot be null. (Parameter 'pageNumbers')", result.ErrorStatus);
         }
     }
 }
