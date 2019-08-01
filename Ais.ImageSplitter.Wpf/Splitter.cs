@@ -13,6 +13,7 @@ namespace Ais.ImageSplitter.Wpf
     public class Splitter : ISplitter
     {
         private readonly IFileSystem _fileSystem;
+        internal TiffBitmapEncoder Encoder { get; private set; }
 
         public Splitter() : this(new FileSystem())
         {
@@ -52,26 +53,26 @@ namespace Ais.ImageSplitter.Wpf
                     var decoder = new TiffBitmapDecoder(inputStream, BitmapCreateOptions.PreservePixelFormat,
                         BitmapCacheOption.Default);
 
-                    var encoder = new TiffBitmapEncoder();
+                    Encoder = new TiffBitmapEncoder();
 
                     foreach (int pageNumber in pageNumbers)
                     {
                         if (pageNumber > 0 && pageNumber <= decoder.Frames.Count)
                         {
-                            encoder.Frames.Add(decoder.Frames[pageNumber-1]);
+                            Encoder.Frames.Add(decoder.Frames[pageNumber-1]);
                         }
                     }
 
-                    if (encoder.Frames.Any())
+                    if (Encoder.Frames.Any())
                     {
                         await using (Stream outputStream = _fileSystem.FileStream.Create(outputFilePath, FileMode.Create, FileAccess.Write))
                         {
-                            encoder.Save(outputStream);
+                            Encoder.Save(outputStream);
                         }
                     }
                     else
                     {
-                        throw new InvalidOperationException("No pages were saved to the output. This may be because no pages were indicated, or the indicated pages were not found in the supplied input file.");
+                        throw new InvalidOperationException("No pages were saved to the output. This may be because no pages were indicated, or the indicated pages were not found in the source file.");
                     }
                 }
             }

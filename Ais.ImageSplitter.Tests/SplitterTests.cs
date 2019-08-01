@@ -86,9 +86,17 @@ namespace Ais.ImageSplitter.Tests
 
             SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", new int[] { 0, -12, 1, 4, 6, 9, 61, 65 });
 
+            Assert.AreEqual(4, splitter.Encoder.Frames.Count);
+        }
 
+        [TestMethod]
+        public async Task SplitAsync_AllValidPageNumbersIncluded()
+        {
+            var splitter = new Splitter(_fileSystemFixture.FileSystem);
 
-            Assert.AreEqual(4, result.ErrorStatus);
+            SplitResult result = await splitter.SplitAsync(@"C:\images\sample-input.tif", @"C:\images\sample-output.tif", new int[] { 1, 4, 6, 9, 14,15,16 });
+
+            Assert.AreEqual(7, splitter.Encoder.Frames.Count);
         }
     }
 }
